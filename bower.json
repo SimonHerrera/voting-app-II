@@ -1,0 +1,22 @@
+{
+  "name": "voting-app-ii",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Simon Herrera <simonherrera.tech@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/SimonHerrera/voting-app-II",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "firebase": "^3.0.4",
+    "angular": "^1.5.6"
+  }
+}
