@@ -7,8 +7,53 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-  <h1>Test Code</h1>
 
-    <script src="main.js" type="text/javascript"></script>
+    <div ng-app="app">
+      <div ng-controller="MainCtrl as main">
+        <h1>{{main.heading}}</h1>
+        <!-- <form> -->
+          <div>
+            <input id = "teamForm" type="text" ng-model="main.addATeam">
+            <!-- <label for="teamForm">Add a Team</label> -->
+            <button type="click" ng-click="main.addTeam(main.addATeam)">Click to Add Team </button>
+          </div>
+          <div ng-repeat="team in main.data | toArray:true | orderBy: '-count'">
+           <button type="click" ng-click="main.vote(team.$key)">{{team.name}}</button>{{team.count}}
+           <button type="click" ng-click="main.delete(team.$key)">Delete</button>
+        </div>
+
+        <!-- </form> -->
+
+<!--         <div>
+           <button ng-clik= "main.cubs)(">Cubs</button>
+          {{main.cubsCount}}
+        </div>
+        <div>
+          <button ng-click = "main.sox()">Sox</button>
+          {{main.soxCount}}
+        </div>
+        <div>
+          <button ng-click = "main.braves()">Braves</button>
+          {{main.bravesCount}}
+        </div>
+        <div>
+          <button ng-click = "main.redsox()">Red Sox</button>
+          {{main.redsoxCount}}
+        </div>
+        <div>
+          <button ng-click="main.yankees()">Yankees</button>
+          {{main.yankeesCount}}
+        </div>
+        <div>
+          <button ng-click="main.cardinals()">Cardinals</button>
+          {{main.cardinalsCount}}
+        </div> -->
+      </div>
+    </div>
+
+    <script src="lib/firebase/firebase.js"></script>
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/angular-filter/dist/angular-filter.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>

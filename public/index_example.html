@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Vote Now!</title>
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <div class="container">
+    <div ng-app="app">
+      <div ng-controller="MainCtrl as main">
+        <h1>{{main.heading}}</h1>
+        <div class="nominate">
+          <form class="form-inline" ng-submit="main.nominate()">
+            <div class="form-group">
+              <input type="file"/>
+              <input class="form-control" placeholder="Nomation" ng-model="main.nomination" />
+              <input class="btn btn-primary hidden-xs" type="submit" value="Nominate" />
+              <input class="btn btn-primary btn-block visible-xs nominate" type="submit" value="Nominate" />
+            </div>
+          </form>
+        </div>
+        <hr />
+        <div ng-repeat="person in main.votes | toArray:true | orderBy:'-count'">
+          <button
+            class="btn btn-default" ng-click="main.voteFor(person.$key)"
+          >
+            {{person.name}}
+            <span class="badge">{{person.count}} | {{person.count / main.totalVotes() * 100 | number:0}}%</span>
+          </button>
+          <div class="progress">
+            <div
+              class="progress-bar progress-bar-{{main.percentToColor(person.count / main.maxVotes().count)}}"
+              ng-style="{width: person.count / main.maxVotes().count * 100 + '%'}"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="lib/firebase/firebase.js"></script>
+  <script src="lib/angular/angular.min.js"></script>
+  <script src="lib/angular-filter/dist/angular-filter.js"></script>
+  <script src="main_class.js"></script>
+</html>
